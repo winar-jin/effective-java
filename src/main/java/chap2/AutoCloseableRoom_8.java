@@ -31,5 +31,29 @@ public class AutoCloseableRoom_8 implements AutoCloseable {
     @Override
     public void close() throws Exception {
 //        cleanable.clean();
+        System.out.println("cleaning room");
     }
+
+    public static void main(String[] args) {
+
+        // This is a good example, the room will be auto closed.
+        try (AutoCloseableRoom_8 adult = new AutoCloseableRoom_8(0)) {
+            System.out.println("Bye bye");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        // output:
+        // - Bye bye
+        // - cleaning room
+
+
+        // This is a bad example.
+        new AutoCloseableRoom_8(0);
+        System.out.println("Biu Biu..");
+        // output:
+        // - Biu Biu..
+    }
+
 }
+
+
