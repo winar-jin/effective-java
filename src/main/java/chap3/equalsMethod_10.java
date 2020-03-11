@@ -12,8 +12,7 @@ public class equalsMethod_10 {
             this.content = Objects.requireNonNull(content);
         }
 
-        @Override
-        public boolean equals(Object obj) {
+        public boolean equalsBad(Object obj) {
             if (obj instanceof CaseInsensitiveString) {
                 return content.equalsIgnoreCase(((CaseInsensitiveString) obj).content);
             }
@@ -22,6 +21,12 @@ public class equalsMethod_10 {
                 return content.equalsIgnoreCase((String) obj); // broke symmetric
             }
             return false;
+        }
+
+        // right way
+        @Override
+        public boolean equals(Object obj) {
+            return obj instanceof CaseInsensitiveString && ((CaseInsensitiveString) obj).content.equalsIgnoreCase(content);
         }
     }
 
